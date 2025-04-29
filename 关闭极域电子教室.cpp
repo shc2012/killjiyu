@@ -1,28 +1,26 @@
 #include <iostream>
-#include <cstdlib> // 包含system()函数
+#include <cstdlib> 
 
 using namespace std;
 
 int main() 
 {
-   cout <<"欢迎使用关闭极域程序，请将程序放入D盘防止重启删除，谢谢.";
-    return 0;
-}
-int main() {
-    // 执行taskkill命令终止studentmain.exe进程
-    int result = system("taskkill /f /im studentmain.exe");
+    cout << "欢迎使用关闭极域程序，请将程序放入D盘防止重启删除，谢谢。" << endl;
     
-    // 根据执行结果输出提示信息
-    if (result == 0) {
+    // 终止极域进程
+    int killResult = system("taskkill /f /im studentmain.exe");
+    if (killResult == 0) {
         cout << "成功终止了studentmain.exe进程。" << endl;
     } else {
-        cout << "终止进程失败，可能原因：" << endl;
-        cout << "1. 进程未运行" << endl;
-        cout << "2. 缺少管理员权限" << endl;
-        cout << "3. 被杀毒软件阻止" << endl;
+        cout << "终止进程失败，可能进程未运行或权限不足。" << endl;
     }
-    
-    // 保持窗口停留（仅调试时需要）
-    // system("pause");
+
+    // 检查进程是否仍在运行
+    int checkResult = system("tasklist /FI \"IMAGENAME eq studentmain.exe\" | findstr /i studentmain.exe >nul");
+    if (checkResult == 0) {
+        cout << "\n⚠️ 警告：检测到极域服务仍在运行！" << endl;
+    }
+
+    // system("pause");  // 调试时可取消注释
     return 0;
 }
