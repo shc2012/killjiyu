@@ -3,6 +3,9 @@
 
 using namespace std;
 
+int main() 
+{
+   cout <<"欢迎使用关闭极域程序，请将程序放入D盘防止重启删除
 int main() {
     // 执行taskkill命令终止studentmain.exe进程
     int result = system("taskkill /f /im studentmain.exe");
