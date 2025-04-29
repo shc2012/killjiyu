@@ -15,7 +15,6 @@ int main()
         cout << "终止进程失败，可能进程未运行或权限不足。" << endl;
     }
 
-    // 检查进程是否仍在运行
     int checkResult = system("tasklist /FI \"IMAGENAME eq studentmain.exe\" | findstr /i studentmain.exe >nul");
     if (checkResult == 0) {
         cout << "\n⚠️ 警告：检测到极域服务仍在运行！" << endl;
